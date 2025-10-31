@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confluence | A Columbian Exchange Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'serif': ['Playfair Display', 'serif'],
+              'sans': ['Raleway', 'sans-serif'],
+            },
+            colors: {
+              'brand-primary': '#4a3f35',
+              'brand-secondary': '#a08a7b',
+              'brand-accent': '#c9a987',
+              'brand-bg': '#f5f0e6',
+              'brand-text': '#2a231f',
+            },
+             animation: {
+              'fade-in-up': 'fadeInUp 1s ease-out forwards',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      .fade-in-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+       @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        opacity: 0; /* Start with opacity 0 to be controlled by is-visible */
+        transition: opacity 1s ease-out, transform 1s ease-out;
+      }
+      .animation-delay-200 {
+        transition-delay: 200ms;
+      }
+      .animation-delay-400 {
+        transition-delay: 400ms;
+      }
+
+      /* Parallax Background */
+      .parallax-bg {
+        transition: transform 0.2s ease-out;
+      }
+      
+      /* Staggered Text Animation */
+      .staggered-char {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: transform 0.8s, opacity 0.8s;
+      }
+      
+      .is-visible .staggered-char {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      .is-visible .animate-fade-in-up {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+
+      /* Text Reveal Animation */
+      .text-reveal-container {
+        position: relative;
+        display: inline-block;
+        overflow: hidden;
+      }
+
+      .text-reveal-content {
+        display: inline-block;
+        transform: translateY(110%);
+        transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      .fade-in-section.is-visible .text-reveal-content {
+        transform: translateY(0);
+      }
+
+      .fade-in-section.is-visible .text-reveal-content.delay-200 {
+        transition-delay: 200ms;
+      }
+
+      /* 3D Tilt effect */
+      .perspective-container {
+        perspective: 1000px;
+      }
+      
+      /* Ship Animation */
+      .ship-divider-path {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+      }
+      
+      .is-visible .ship-divider-path {
+        animation: wave-draw 2s ease-out forwards;
+      }
+
+      .ship-icon {
+        offset-distance: 0%;
+        opacity: 0;
+        offset-rotate: 0deg; /* Prevents the ship from auto-rotating with the path */
+      }
+
+      .direction-ltr .ship-icon {
+        offset-path: path('M0,50 Q250,0 500,50 T1000,50');
+      }
+      
+      .direction-rtl .ship-icon {
+        offset-path: path('M1000,50 Q750,0 500,50 T0,50');
+      }
+
+      .is-visible .ship-icon {
+        animation: sail 2.5s ease-in-out forwards;
+        animation-delay: 0.2s;
+      }
+
+      @keyframes wave-draw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes sail {
+        0% {
+          offset-distance: 0%;
+          opacity: 0;
+        }
+        25% {
+          opacity: 1;
+        }
+        75% {
+          opacity: 1;
+        }
+        100% {
+          offset-distance: 100%;
+          opacity: 0;
+        }
+      }
+
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-bg">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
